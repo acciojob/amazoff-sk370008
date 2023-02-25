@@ -3,6 +3,8 @@ package com.driver;
 public class Order {
 
     private String id;
+
+    private String deleteThisVariable; //Remove this variable
     private int deliveryTime;
 
     public Order(String id, String deliveryTime) {
