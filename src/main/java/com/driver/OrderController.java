@@ -85,6 +85,7 @@ public class OrderController {
         List<String> orders = null;
 
         //Get all orders
+        orders = orderService.getAllOrders();
         return new ResponseEntity<>(orders, HttpStatus.CREATED);
     }
 
@@ -93,7 +94,7 @@ public class OrderController {
         Integer countOfOrders = 0;
 
         //Count of orders that have not been assigned to any DeliveryPartner
-
+        countOfOrders = orderService.getCountOfUnassignedOrders();
         return new ResponseEntity<>(countOfOrders, HttpStatus.CREATED);
     }
 
@@ -103,7 +104,7 @@ public class OrderController {
         Integer countOfOrders = 0;
 
         //countOfOrders that are left after a particular time of a DeliveryPartner
-
+        countOfOrders = orderService.getOrdersLeftAfterGivenTimeByPartnerId(time,partnerId);
         return new ResponseEntity<>(countOfOrders, HttpStatus.CREATED);
     }
 

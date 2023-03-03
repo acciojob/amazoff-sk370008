@@ -37,4 +37,19 @@ public class OrderService {
     public List<String> getOrdersByPartnerId(String partnerId) {
         return orderRepository.getOrdersByPartnerId(partnerId);
     }
+
+    public List<String> getAllOrders() {
+        return orderRepository.getAllOrders();
+    }
+
+    public Integer getCountOfUnassignedOrders() {
+        return orderRepository.getCountOfUnassignedOrders();
+    }
+
+    public Integer getOrdersLeftAfterGivenTimeByPartnerId(String time, String partnerId) {
+        String[] splitTime = time.split(":");
+        int givenTime = Integer.parseInt(splitTime[0]) * 60 + Integer.parseInt(splitTime[1]);
+        return orderRepository.getOrdersLeftAfterGivenTimeByPartnerId(givenTime,partnerId);
+    }
+
 }

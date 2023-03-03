@@ -62,4 +62,32 @@ public class OrderRepository {
     }
 
 
+    public List<String> getAllOrders() {
+        List<String> allOrders = new ArrayList<>();
+        for (String order : orderHashMap.keySet()){
+            allOrders.add(order);
+        }
+        return allOrders;
+    }
+
+
+    public Integer getCountOfUnassignedOrders() {
+        return orderHashMap.size() - orderAssignedPartnerHashMap.size();
+    }
+
+
+
+    public Integer getOrdersLeftAfterGivenTimeByPartnerId(int givenTime, String partnerId) {
+        int count = 0;
+        List<String> orders = allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId);
+        for (String order:orders){
+            int deliveryTime = orderHashMap.get(order).getDeliveryTime();
+            if (deliveryTime>givenTime){
+                count++;
+            }
+        }
+        return count;
+    }
+
+
 }
