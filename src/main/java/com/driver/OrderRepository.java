@@ -90,4 +90,33 @@ public class OrderRepository {
     }
 
 
+    public int getLastDeliveryTimeByPartnerId(String partnerId) {
+        int maxTime =  0;
+        List<String> orders = allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId);
+        for (String order:orders){
+            int deliveryTime = orderHashMap.get(order).getDeliveryTime();
+            maxTime = Math.max(maxTime,deliveryTime);
+        }
+
+        return maxTime;
+
+    }
+
+    public void deletePartnerById(String partnerId) {
+        List<String> allOrders = allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId);
+        deliveryPartnerHashMap.remove(partnerId);
+        allAssignedOrdersToDeliveryPartnerHashMap.remove(partnerId);
+        for (String order:allOrders){
+            orderAssignedPartnerHashMap.remove(order);
+        }
+    }
+
+    public void deleteOrderById(String orderId) {
+        orderHashMap.remove(orderId);
+        String partnerId = orderAssignedPartnerHashMap.get(orderId);
+        orderAssignedPartnerHashMap.remove(orderId);
+        allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId).remove(orderId);
+        deliveryPartnerHashMap.get(partnerId).setNumberOfOrders(allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId).size());
+
+    }
 }

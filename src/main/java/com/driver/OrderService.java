@@ -52,4 +52,24 @@ public class OrderService {
         return orderRepository.getOrdersLeftAfterGivenTimeByPartnerId(givenTime,partnerId);
     }
 
+    public String getLastDeliveryTimeByPartnerId(String partnerId) {
+        int time = orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
+        String HH = String.valueOf(time/60);
+        String MM = String.valueOf(time%60);
+        if(HH.length()<2){
+            HH = '0' + HH;
+        }
+        if (MM.length()<2){
+            MM = '0' + MM;
+        }
+        return  HH + ":" + MM;
+    }
+
+    public void deletePartnerById(String partnerId) {
+        orderRepository.deletePartnerById(partnerId);
+    }
+
+    public void deleteOrderById(String orderId) {
+        orderRepository.deleteOrderById(orderId);
+    }
 }
