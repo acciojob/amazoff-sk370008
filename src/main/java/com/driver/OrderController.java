@@ -1,5 +1,6 @@
 package com.driver;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,4 +135,9 @@ public class OrderController {
         orderService.deleteOrderById(orderId);
         return new ResponseEntity<>(orderId + " removed successfully", HttpStatus.CREATED);
     }
+
+//    @GetMapping("/check")
+//    public HashMap<String,Order> check(){
+//        return orderService.check();
+//    }
 }

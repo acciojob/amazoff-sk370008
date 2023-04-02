@@ -2,10 +2,8 @@ package com.driver;
 
 import org.springframework.stereotype.Repository;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 @Repository
@@ -21,7 +19,10 @@ public class OrderRepository {
     HashMap<String, List<String>> allAssignedOrdersToDeliveryPartnerHashMap = new HashMap<>();
 
     public void addOrder(Order order){
-        orderHashMap.put(order.getId(),order);
+        //Effects:- orderHashMap
+
+        if(order.getId() != null)
+            orderHashMap.put(order.getId(),order);
     }
 
     public void addPartner(String partnerId){
@@ -119,4 +120,8 @@ public class OrderRepository {
         deliveryPartnerHashMap.get(partnerId).setNumberOfOrders(allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId).size());
 
     }
+
+//    public HashMap<String, Order> check() {
+//        return orderHashMap;
+//    }
 }

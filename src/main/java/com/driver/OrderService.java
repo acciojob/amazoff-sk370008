@@ -3,6 +3,7 @@ package com.driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -72,4 +73,8 @@ public class OrderService {
     public void deleteOrderById(String orderId) {
         orderRepository.deleteOrderById(orderId);
     }
+
+//    public HashMap<String, Order> check() {
+//        return orderRepository.check();
+//    }
 }
