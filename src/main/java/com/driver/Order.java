@@ -6,9 +6,9 @@ public class Order {
 
     private int deliveryTime;
 
-    public Order(){
-
-    }
+//    public Order(){
+//
+//    }
 
     public Order(String id, String deliveryTime) {
         this.id = id;

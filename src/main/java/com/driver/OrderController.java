@@ -136,8 +136,8 @@ public class OrderController {
         return new ResponseEntity<>(orderId + " removed successfully", HttpStatus.CREATED);
     }
 
-//    @GetMapping("/check")
-//    public HashMap<String,Order> check(){
-//        return orderService.check();
-//    }
+    @GetMapping("/check")
+    public HashMap<String,Order> check(){
+        return orderService.check();
+    }
 }

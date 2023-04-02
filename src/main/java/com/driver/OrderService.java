@@ -74,7 +74,7 @@ public class OrderService {
         orderRepository.deleteOrderById(orderId);
     }
 
-//    public HashMap<String, Order> check() {
-//        return orderRepository.check();
-//    }
+    public HashMap<String, Order> check() {
+        return orderRepository.check();
+    }
 }

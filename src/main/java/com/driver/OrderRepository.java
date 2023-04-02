@@ -121,7 +121,7 @@ public class OrderRepository {
 
     }
 
-//    public HashMap<String, Order> check() {
-//        return orderHashMap;
-//    }
+    public HashMap<String, Order> check() {
+        return orderHashMap;
+    }
 }
