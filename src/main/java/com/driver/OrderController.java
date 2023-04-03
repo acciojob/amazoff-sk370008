@@ -1,6 +1,7 @@
 package com.driver;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,8 +137,23 @@ public class OrderController {
         return new ResponseEntity<>(orderId + " removed successfully", HttpStatus.CREATED);
     }
 
-    @GetMapping("/check")
-    public HashMap<String,Order> check(){
-        return orderService.check();
+    @GetMapping("/check1")
+    public HashMap<String,Order> check1(){
+        return orderService.check1();
+    }
+
+    @GetMapping("/check2")
+    public HashMap<String,DeliveryPartner> check2(){
+        return orderService.check2();
+    }
+
+    @GetMapping("/check3")
+    public HashMap<String,String> check3(){
+        return orderService.check3();
+    }
+
+    @GetMapping("/check4")
+    public HashMap<String, HashSet<String>> check4(){
+        return orderService.check4();
     }
 }

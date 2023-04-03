@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -74,7 +75,19 @@ public class OrderService {
         orderRepository.deleteOrderById(orderId);
     }
 
-    public HashMap<String, Order> check() {
-        return orderRepository.check();
+    public HashMap<String, Order> check1() {
+        return orderRepository.check1();
+    }
+
+    public HashMap<String, DeliveryPartner> check2() {
+        return orderRepository.check2();
+    }
+
+    public HashMap<String,String> check3(){
+        return orderRepository.check3();
+    }
+
+    public HashMap<String, HashSet<String>> check4() {
+        return orderRepository.check4();
     }
 }
