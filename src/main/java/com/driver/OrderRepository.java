@@ -80,7 +80,7 @@ public class OrderRepository {
     }
 
     public List<String> getOrdersByPartnerId(String partnerId) {
-        HashSet orderList = null;
+        HashSet<String> orderList = null;
         if (allAssignedOrdersToDeliveryPartnerHashMap.containsKey(partnerId)){
             orderList = allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId);
         }
@@ -100,7 +100,16 @@ public class OrderRepository {
 
 
     public Integer getCountOfUnassignedOrders() {
-        return orderHashMap.size() - orderAssignedPartnerHashMap.size();
+        Integer unassignedOrders = 0;
+
+        List<String> list = new ArrayList<>(orderHashMap.keySet());
+
+        for (String s : list){
+            if (!orderAssignedPartnerHashMap.containsKey(s)){
+                unassignedOrders++;
+            }
+        }
+        return unassignedOrders;
     }
 
 
