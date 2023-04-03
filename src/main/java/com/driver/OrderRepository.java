@@ -167,18 +167,43 @@ public class OrderRepository {
 //            orderAssignedPartnerHashMap.remove(order);
 //        }
 
-        deliveryPartnerHashMap.remove(partnerId);
-        if (allAssignedOrdersToDeliveryPartnerHashMap.containsKey(partnerId))
+        HashSet<String> orders = new HashSet<>();
+        if (allAssignedOrdersToDeliveryPartnerHashMap.containsKey(partnerId)){
+            orders = allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId);
+            for (String orderId : orders){
+                if (orderAssignedPartnerHashMap.containsKey(orderId)){
+                    orderAssignedPartnerHashMap.remove(orderId);
+                }
+            }
             allAssignedOrdersToDeliveryPartnerHashMap.remove(partnerId);
+        }
+
+        if (deliveryPartnerHashMap.containsKey(partnerId)){
+            deliveryPartnerHashMap.remove(partnerId);
+        }
     }
 
     public void deleteOrderById(String orderId) {
-        orderHashMap.remove(orderId);
-        String partnerId = orderAssignedPartnerHashMap.get(orderId);
-        orderAssignedPartnerHashMap.remove(orderId);
-        allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId).remove(orderId);
-        deliveryPartnerHashMap.get(partnerId).setNumberOfOrders(allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId).size());
+//        orderHashMap.remove(orderId);
+//        String partnerId = orderAssignedPartnerHashMap.get(orderId);
+//        orderAssignedPartnerHashMap.remove(orderId);
+//        allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId).remove(orderId);
+//        deliveryPartnerHashMap.get(partnerId).setNumberOfOrders(allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId).size());
 
+        if (orderAssignedPartnerHashMap.containsKey(orderId)){
+            String partnerId = orderAssignedPartnerHashMap.get(orderId);
+
+            HashSet<String> ordersList = allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId);
+            ordersList.remove(orderId);
+            allAssignedOrdersToDeliveryPartnerHashMap.put(partnerId,ordersList);
+
+            DeliveryPartner deliveryPartner = deliveryPartnerHashMap.get(partnerId);
+            deliveryPartner.setNumberOfOrders(ordersList.size());
+        }
+
+        if (orderHashMap.containsKey(orderId)){
+            orderHashMap.remove(orderId);
+        }
     }
 
     public HashMap<String, Order> check1() {
