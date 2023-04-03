@@ -28,9 +28,9 @@ public class OrderRepository {
 
     public void addOrder(Order order){
         //Effects:- orderHashMap
-
-        if(order.getId() != null)
-            orderHashMap.put(order.getId(),order);
+        String key = order.getId();
+        if(key != null)
+            orderHashMap.put(key,order);
     }
 
     public void addPartner(String partnerId){
