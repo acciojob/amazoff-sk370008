@@ -40,24 +40,7 @@ public class OrderRepository {
     }
 
     public void addOrderPartnerPair(String orderId,String partnerId){
-//        if (orderHashMap.containsKey(orderId) && deliveryPartnerHashMap.containsKey(partnerId)){
-//            orderAssignedPartnerHashMap.put(orderId,partnerId);
-//
-//            List<String> currentOrder = new ArrayList<>();
-//            if (allAssignedOrdersToDeliveryPartnerHashMap.containsKey(partnerId)){
-//                currentOrder = allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId);
-//            }
-//            currentOrder.add(orderId);
-//            allAssignedOrdersToDeliveryPartnerHashMap.put(partnerId,currentOrder);
-//
-//            HashSet<String> orders = new HashSet<>();
-//
-//
-//
-//            //Increase the number of orders of partner
-//            DeliveryPartner deliveryPartner = deliveryPartnerHashMap.get(partnerId);
-//            deliveryPartner.setNumberOfOrders(deliveryPartner.getNumberOfOrders() + 1);
-//        }
+
 
         if (orderHashMap.containsKey(orderId) && deliveryPartnerHashMap.containsKey(partnerId)){
             //orderAssignedPartnerHashMap    ,    allAssignedOrdersToDeliveryPartnerHashMap
@@ -81,7 +64,11 @@ public class OrderRepository {
     }
 
     public DeliveryPartner getPartnerById(String partnerId){
-        return deliveryPartnerHashMap.get(partnerId);
+        DeliveryPartner deliveryPartner = null;
+        if (deliveryPartnerHashMap.containsKey(partnerId)){
+            deliveryPartner = deliveryPartnerHashMap.get(partnerId);
+        }
+        return deliveryPartner;
     }
 
     public Integer getOrderCountByPartnerId(String partnerId) {
