@@ -18,6 +18,13 @@ public class OrderRepository {
     //To keep the list of orders assigned to a delivery partner
     HashMap<String, List<String>> allAssignedOrdersToDeliveryPartnerHashMap = new HashMap<>();
 
+    public OrderRepository() {
+        this.orderHashMap = new HashMap<String,Order>();
+        this.deliveryPartnerHashMap = new HashMap<String, DeliveryPartner>();
+        this.orderAssignedPartnerHashMap = new HashMap<String, String>();
+        this.allAssignedOrdersToDeliveryPartnerHashMap = new HashMap<String, List<String>>();
+    }
+
     public void addOrder(Order order){
         //Effects:- orderHashMap
 
