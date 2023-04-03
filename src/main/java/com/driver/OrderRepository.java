@@ -72,7 +72,11 @@ public class OrderRepository {
     }
 
     public Integer getOrderCountByPartnerId(String partnerId) {
-        return allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId).size();
+        int orderCount = 0;
+        if (allAssignedOrdersToDeliveryPartnerHashMap.containsKey(partnerId))
+            orderCount = allAssignedOrdersToDeliveryPartnerHashMap.get(partnerId).size();
+
+        return orderCount;
     }
 
     public List<String> getOrdersByPartnerId(String partnerId) {
